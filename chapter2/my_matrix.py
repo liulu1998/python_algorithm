@@ -23,6 +23,7 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     # col from 2 to (n-1)
     for col in range(1, n):
         # row from (col-1) to 0
+        # TODO 计算顺序有误?
         for row in range(col-1, -1, -1):
             m[row][col] = m[row-1][col] + p[row]*p[col]*p[col+1]
             s[row][col] = row
@@ -35,9 +36,7 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
                     m[row][col] = tmp_m
     return m, s
 
-count = 0
 def traceback(s: np.ndarray, i: int, j: int) -> None:
-    global count
     if i == j:
         return
     traceback(s, i, s[i][j])

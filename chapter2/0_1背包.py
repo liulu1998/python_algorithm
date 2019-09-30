@@ -46,7 +46,8 @@ if __name__ == "__main__":
     m = np.zeros((len(v), c+1), dtype=np.int32)
     knapsack(v, w, c, m)
 
-    print(m)
+    # 物品选或不选的向量
     x = np.zeros((len(v),), dtype=np.int32)
     traceback(m, w, c, x)
     print(x)
+    # out: [1 0 0 1 0]

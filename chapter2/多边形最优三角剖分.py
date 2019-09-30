@@ -44,15 +44,15 @@ if __name__ == "__main__":
     ]
 
     weight = np.array(weight, dtype=np.int32)
-    # print(weight)
     
     t = np.zeros((weight.shape[0]+1, weight.shape[1]+1), dtype=np.int32)
     s = np.zeros((weight.shape[0]+1, weight.shape[1]+1), dtype=np.int8)
 
-    # print(f"weight: {weight.shape}")
-    # print(f"t: {t.shape}   s:{s.shape}")
-
     min_weight_triangulation(weight.shape[0], t, s, w)
-    # print(t, s, sep="\n\n")
 
     traceback(s, 1, weight.shape[0]-1)
+    # out:
+    # 划分的三角形 V2  V4  V3
+    # 划分的三角形 V1  V4  V2
+    # 划分的三角形 V0  V4  V1
+    # 划分的三角形 V0  V5  V4

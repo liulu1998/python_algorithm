@@ -46,3 +46,9 @@ if __name__ == "__main__":
     
     matrix_chain(p, m, s)
     traceback(s, 1, p.shape[0] - 1)
+    # out:
+    # Multiply A[2,2] and A[3,3]
+    # Multiply A[1,1] and A[2,3]
+    # Multiply A[4,4] and A[5,5]
+    # Multiply A[4,5] and A[6,6]
+    # Multiply A[1,3] and A[4,6]

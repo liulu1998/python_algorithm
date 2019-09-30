@@ -49,6 +49,7 @@ if __name__ == "__main__":
 
     # 最长公共子序列长度
     max_len = lcs_length(x, y, b)
-    print(f"最长公共子序列长度:{max_len}")   
+    # print(f"最长公共子序列长度:{max_len}")   
 
     lcs(len(x)-1, len(y)-1, x, b)
+    # out: dejnu

@@ -11,7 +11,7 @@ def matrix_chain(p: np.ndarray, m: np.ndarray, s: np.ndarray)->None:
     :param m: ndarray, 保存最优值的矩阵
     :param s: ndarray, 保存最优值对应的分裂位置k的矩阵
     """
-
+    # 矩阵数
     n = len(p) - 1
     for r in range(2, n+1):
         for i in range(1, n-r+2):
@@ -36,15 +36,16 @@ def traceback(s: np.ndarray, i: int, j: int) -> None:
 if __name__ == "__main__":
     
     # 矩阵维数
-    p = [30, 35, 15, 5, 10, 20, 25]
+    p = [20, 35, 15, 5, 10, 20, 25]
     p = np.array(p, dtype='int32')
     
     # m[i][j] 记录了 A[i:j] 的最优值
-    m = np.zeros((p.shape[0], p.shape[0]), dtype='int32')
+    m = np.zeros((p.shape[0]+1, p.shape[0]+1), dtype='int32')
     # s[i][j] 记录了 m[i][j] 对应的分裂位置 k
-    s = np.zeros((p.shape[0], p.shape[0]), dtype='int32')
+    s = np.zeros((p.shape[0]+1, p.shape[0]+1), dtype='int32')
     
     matrix_chain(p, m, s)
+    print(m, s, sep="\n\n")
     traceback(s, 1, p.shape[0] - 1)
     # out:
     # Multiply A[2,2] and A[3,3]

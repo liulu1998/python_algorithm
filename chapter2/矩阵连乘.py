@@ -27,7 +27,7 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
             # 当前行数  
             cur_col = row + col
             
-            m[row][cur_col] = m[row+1][cur_col] + p[row]*p[row+col]*p[row+col+1]
+            m[row][cur_col] = m[row+1][cur_col] + p[row]*p[row+1]*p[cur_col+1]
             s[row][cur_col] = row
 
             # 计算划分最优位置 k

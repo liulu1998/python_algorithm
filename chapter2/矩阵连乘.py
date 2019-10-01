@@ -22,36 +22,41 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
 
     # col from 2 to (n-1)
     for col in range(1, n):
-        # row from (col-1) to 0
-        # TODO 计算顺序有误?
-        for row in range(col-1, -1, -1):
-            m[row][col] = m[row-1][col] + p[row]*p[col]*p[col+1]
-            s[row][col] = row
+        for row in range(0, n-col):
+            # 沿着斜线自左上向右下计算
+            # 当前行数  
+            cur_col = row + col
+            
+            m[row][cur_col] = m[row+1][cur_col] + p[row]*p[row+col]*p[row+col+1]
+            s[row][cur_col] = row
+
             # 计算划分最优位置 k
-            for k in range(row+1, col):
-                tmp_m = m[row][k] + m[k+1][col] + p[row]*p[k+1]*p[col+1]
+            for k in range(row+1, cur_col):
+                tmp_m = m[row][k] + m[k+1][cur_col] + p[row]*p[k+1]*p[cur_col+1]
                 # 如果出现更优的划分位置 k
-                if tmp_m < m[row][col]:
-                    s[row][col] = k
-                    m[row][col] = tmp_m
+                if tmp_m < m[row][cur_col]:
+                    s[row][cur_col] = k
+                    m[row][cur_col] = tmp_m
     return m, s
+
 
 def traceback(s: np.ndarray, i: int, j: int) -> None:
     if i == j:
         return
     traceback(s, i, s[i][j])
     traceback(s, s[i][j]+1, j)
-    count += p[i]*p[s[i][j]+1]*p[j+1]
     print(f"Multiply A[{i+1}: {s[i][j]+1}] and A[{s[i][j]+2}: {j+1}]")
 
 
 if __name__ == "__main__":
-    # p = np.array([20, 35, 15, 5, 10, 20, 25], dtype=np.int32)
     p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
     
     m, s = matrix_chain(p)
 
     traceback(s, 0, len(p)-2)
-    print(m, s, sep="\n\n")
-
-    # print(f"count:{count}")
+    # out:
+    # Multiply A[2: 2] and A[3: 3]
+    # Multiply A[1: 1] and A[2: 3]
+    # Multiply A[4: 4] and A[5: 5]
+    # Multiply A[4: 5] and A[6: 6]
+    # Multiply A[1: 3] and A[4: 6]

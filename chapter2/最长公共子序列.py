@@ -4,21 +4,23 @@ from typing import List
 
 def lcs_length(x1: str, y1:str) -> (int, np.ndarray):
     # 人为增加一位不同的字符
-    x = list(x1)
+    x, y = list(x1), list(y1)
     x.insert(0, '+')
-    x = "".join(x)
-
-    y = list(y1)
     y.insert(0, '-')
-    y = "".join(y)
+    x, y = "".join(x), "".join(y)
+
 
     # c[i][j] 为 Xi 和 Yj 的最长公共子序列长度
-    c = np.zeros((len(x), len(y)), dtype=np.int32)
-    # b[i][j] 为 c[i][j] 由哪个子问题的解得到
-    b = np.zeros((len(x), len(y)), dtype=np.int32)
+    c = np.empty((len(x), len(y)), dtype=np.int32)
+    # 初始化边界值
+    c[0, :] = 0
+    c[:, 0] = 0
 
-    for i in range(0, len(x)):
-        for j in range(0, len(y)):
+    # b[i][j] 为 c[i][j] 由哪个子问题的解得到
+    b = np.empty((len(x), len(y)), dtype=np.int8)
+
+    for i in range(1, len(x)):
+        for j in range(1, len(y)):
             if x[i] == y[j]:
                 c[i][j] = c[i-1][j-1] + 1
                 # 情况1, 该位置元素相等

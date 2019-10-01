@@ -24,6 +24,7 @@ def lcs_length(x1: str, y1:str) -> (int, np.ndarray):
                 # 情况1, 该位置元素相等
                 b[i][j] = 1
 
+            # 取两个子问题中较大的解
             elif c[i-1][j] >= c[i][j-1]:
                 c[i][j] = c[i-1][j]
                 b[i][j] = 2

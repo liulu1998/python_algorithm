@@ -16,9 +16,13 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     # 矩阵数
     n = len(p) - 1  
     # 暂存最优值    
-    m = np.zeros((n, n), dtype=np.int32)
+    # m = np.zeros((n, n), dtype=np.int32)
+    m = np.empty((n, n), dtype=np.int32)
+    for i in range(0, n):
+        m[i][i] = 0
+    
     # 最优值的划分位置
-    s = np.zeros((n, n), dtype=np.int8)
+    s = np.empty((n, n), dtype=np.int8)
 
     # col from 2 to (n-1)
     for col in range(1, n):

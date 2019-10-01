@@ -13,14 +13,9 @@ def lcs_length(x1: str, y1:str) -> (int, np.ndarray):
     y = "".join(y)
 
     # c[i][j] 为 Xi 和 Yj 的最长公共子序列长度
-    c = np.empty((len(x), len(y)), dtype=np.int32)
+    c = np.zeros((len(x), len(y)), dtype=np.int32)
     # b[i][j] 为 c[i][j] 由哪个子问题的解得到
-    b = np.empty((len(x), len(y)), dtype=np.int32)
-
-    for i in range(0, len(x)):
-        c[i][0] = 0
-    for j in range(0, len(y)):
-        c[0][j] = 0
+    b = np.zeros((len(x), len(y)), dtype=np.int32)
 
     for i in range(0, len(x)):
         for j in range(0, len(y)):
@@ -42,6 +37,7 @@ def lcs_length(x1: str, y1:str) -> (int, np.ndarray):
 def lcs(i: int, j: int, x: str, b: np.ndarray) -> None:
     if i == 0 or j == 0:
         return
+
     if b[i][j] == 1:
         lcs(i-1, j-1, x, b)
         print(x[i-1], end="")
@@ -58,6 +54,5 @@ if __name__ == "__main__":
     y = "acdehijk"
 
     max_len, b = lcs_length(x, y)
-    # print(max_len)
 
     lcs(len(x), len(y), x, b)

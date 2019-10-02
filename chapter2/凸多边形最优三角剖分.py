@@ -1,5 +1,4 @@
 import numpy as np
-from numba import jit, njit
 
 
 def min_weight_triangulation(n: int, t: np.ndarray, s: np.ndarray, w) -> None:

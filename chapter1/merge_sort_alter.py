@@ -8,9 +8,9 @@ def merge_sort(a: List[int]) -> None:
     s = 1
     while(s < len(a)):
         merge_pass(a, b, s)
-        s<<1
+        s = s<<1
         merge_pass(b, a, s)
-        s<<1
+        s = s<<1
 
 
 def merge_pass(x: List[int], y: List[int], s: int) -> None:

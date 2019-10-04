@@ -52,14 +52,13 @@ def merge(a: List[int], left: int, right: int) -> None:
             index_r += 1
         index_m += 1
 
-    m[index_m: len(m)] = a[index_r: right+1] if index_l == mid + 1 else a[index_l: mid+1]
-    
     # 左半部分先归并结束, 右半部分接到数组最后
     # if index_l == mid + 1:
     #     m[index_m: len(m)] = a[index_r: right+1]
     # else:
     #     m[index_m: len(m)] = a[index_l: mid+1]
 
+    m[index_m: len(m)] = a[index_r: right+1] if (index_l == mid + 1) else a[index_l: mid+1]
     a[left: right+1] = m
 
 

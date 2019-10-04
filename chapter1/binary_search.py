@@ -12,6 +12,8 @@ def binary_search(a: List[int], x: int, n: int) -> int:
         int, 待搜索的值
     :param n
         int, 搜索范围 [0..n-1]
+    :return index
+        int, 若搜索到返回元素索引; 否则返回 -1
     """
 
     left = 0
@@ -33,3 +35,17 @@ if __name__ == "__main__":
 
     for x in range(-3, 13):
         print(f"search: {x}  index: {binary_search(a, x, len(a))}")
+
+    # out:
+    # search: -2  index: -1
+    # search: -1  index: -1
+    # search: 0  index: -1
+    # search: 1  index: 0
+    # search: 2  index: 1
+    # search: 3  index: 2
+    # search: 4  index: 3
+    # search: 5  index: 4
+    # search: 7  index: 6
+    # search: 9  index: 8
+    # search: 10  index: 9
+    # search: 11  index: -1

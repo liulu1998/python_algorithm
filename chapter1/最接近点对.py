@@ -68,7 +68,7 @@ class Pair(object):
         self.dist = dist
 
     def __str__(self):
-        return self.a.__str__() +" and "+ self.b.__str__()
+        return self.a.__str__() +" and "+ self.b.__str__() + f" | dist:{self.dist}"
 
 
 def dist(u: Point, v: Point) -> float:
@@ -137,7 +137,7 @@ def closest_pair(x: List[Point1], y: List[Point2], z: List[Point2], l: int, r: i
         best = right
 
     # 重构数组 y
-    merge(z, y ,l, m, r)
+    # merge(z, y ,l, m, r)
 
     # d 矩形条内的点 置于 z 中
     k = l

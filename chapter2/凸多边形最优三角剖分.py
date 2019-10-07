@@ -1,7 +1,7 @@
 import numpy as np
+from typing import Callable
 
-
-def min_weight_triangulation(weight: np.ndarray, w) -> (np.ndarray, np.ndarray):
+def min_weight_triangulation(weight: np.ndarray, w: Callable[[int, int, int], int]) -> (np.ndarray, np.ndarray):
     """
     计算最优值t, 最优值对应的划分位置s
 

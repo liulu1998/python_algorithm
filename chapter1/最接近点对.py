@@ -2,6 +2,7 @@ from math import sqrt
 import numpy as np
 from typing import List
 import matplotlib.pyplot as plt
+from merge_sort_alter import merge
 
 
 class Point(object):
@@ -12,6 +13,19 @@ class Point(object):
     def __str__(self):
         return f"x:{self.x} y:{self.y}"
 
+    def __eq__(self, other):
+        """等于方法
+        """
+        return self.x == other.x
+
+    def __lt__(self, other):
+        """小于方法
+        """
+        return self.x < other.x
+    
+    def __le__(self, other):
+        return self.x <= other.x
+
 class Point1(Point):
     """
         依 x坐标排序的点
@@ -21,15 +35,8 @@ class Point1(Point):
         self.id = id
 
     def __str__(self):
-        return super().__str__()+f" id:{self.id}"
+        return super().__str__() + f" id:{self.id}"
 
-    # 小于方法
-    def __lt__(self, other):
-        return self.x < other.x
-    
-    # 等于方法
-    def __eq__(self, other):
-        return self.x == other.x
 
 class Point2(Point):
     """
@@ -40,13 +47,16 @@ class Point2(Point):
         self.p = p
 
     def __str__(self):
-        return super().__str__()+f" p:{self.p}"
+        return super().__str__() + f" p:{self.p}"
 
     def __lt__(self, other):
         return self.y < other.y
 
     def __eq__(self, other):
         return self.y == other.y
+    
+    def __le__(self, other):
+        return self.y <= other.y
  
 class Pair(object):
     """
@@ -58,7 +68,7 @@ class Pair(object):
         self.dist = dist
 
     def __str__(self):
-        return self.a.__str__() + self.b.__str__()
+        return self.a.__str__() +" and "+ self.b.__str__()
 
 
 def dist(u: Point, v: Point) -> float:
@@ -86,7 +96,7 @@ def cpair2(x: List[Point1]) -> Pair:
     y = [ Point2(p.x, p.y, i) for (i, p) in enumerate(x) ]
     # 依 y坐标排序, in-place 操作
     y.sort()
-    z = list(range(len(x)))
+    z = list(range(len(y)*2))
     return closest_pair(x, y, z, 0, len(x)-1)
 
 
@@ -108,7 +118,7 @@ def closest_pair(x: List[Point1], y: List[Point2], z: List[Point2], l: int, r: i
             return Pair(x[l], x[r], d3)
     # 多于三点, 分治法
     # l, r 中点
-    m = (l+r) >> 1
+    m = (l+r) // 2
     f = l
     g = m+1
     for i in range(l, r+1):
@@ -127,7 +137,7 @@ def closest_pair(x: List[Point1], y: List[Point2], z: List[Point2], l: int, r: i
         best = right
 
     # 重构数组 y
-    # MergeSort.merge(z, y ,l, m, r) ??
+    merge(z, y ,l, m, r)
 
     # d 矩形条内的点 置于 z 中
     k = l
@@ -143,11 +153,19 @@ def closest_pair(x: List[Point1], y: List[Point2], z: List[Point2], l: int, r: i
                 dp = dist(z[i], z[j])
                 if dp < best.dist:
                     best = Pair(x[z[i].p], x[z[j].p], dp)
-
     return best
 
 
 if __name__ == "__main__":
-    x = [Point1(10, 2, 4), Point1(2, 3, 5), Point1(5, 9, 6), Point1(2, 2, 7)]
-    pair = cpair2(x)
+    x = [
+        (0, 1), (3, 2),
+        (4, 3), (5, 1),
+        (2, 1), (1, 2),
+        (6, 2), (7, 2), 
+        (8, 3), (4, 5), 
+        (9, 0), (6, 4)
+    ]
+
+    x = [Point1(p[0], p[1], i) for i, p in enumerate(x)]
+    pair = cpair2(x) # print(pair)
     print(pair)

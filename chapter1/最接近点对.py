@@ -2,7 +2,7 @@ from math import sqrt
 import numpy as np
 from typing import List
 import matplotlib.pyplot as plt
-from merge_sort_alter import merge
+# from merge_sort_alter import merge
 
 
 class Point(object):

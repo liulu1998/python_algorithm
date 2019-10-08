@@ -37,7 +37,7 @@ def cpair2(s) -> Pair:
     if s.shape[0] == 2:
         return Pair(s[0], s[1], Pair.distance(s[0], s[1]))
 
-    if s.shape[0] < 2:
+    if s.shape[0] == 1:
         return Pair(None, None, np.float("inf"))
     
     # 依照 y坐标预排序
@@ -45,6 +45,7 @@ def cpair2(s) -> Pair:
 
     # x 坐标中位数
     mid_x = np.median(s[:, 0])
+    print(f"mid_x: {mid_x}")
     # 根据 x坐标中位数, 将 S 划分为两半
     s1 = s[s[:, 0] <= mid_x, :]
     s2 = s[s[:, 0]  > mid_x, :]
@@ -53,24 +54,25 @@ def cpair2(s) -> Pair:
     pair1 = cpair2(s1)
     pair2 = cpair2(s2)
     
+    # print(pair1, pair2, sep="\n\n")
     # 最近点对, 最短距离
     best = pair1 if pair1.dist < pair2.dist else pair2
     dm = best.dist
 
     # print("左右两边最好的:")
-    # print(best)
 
     # 左部, 右部 距离分割线 距离小于 dm 的点 
-    p1 = s1[abs(s1[:, 0]) <= dm, :]
-    p2 = s2[abs(s2[:, 0]) <= dm, :]
+    p1 = s1[abs(s1[:, 0] - mid_x) <= dm, :]
+    p2 = s2[abs(s2[:, 0] - mid_x) <= dm, :]
     # 分别根据 y坐标排序
-
-    p1 = p1[np.argsort(p1[:, 1])]    
-    p2 = p2[np.argsort(p2[:, 1])]
+    # p1 = p1[np.argsort(p1[:, 1])]    
+    # p2 = p2[np.argsort(p2[:, 1])]
 
     for point in p1:
-        c = p2[Pair.distance(p2, point) < dm]
-        c = c[np.argsort(Pair.distance(c, point))]
+        c = p2[ np.sqrt((p2[:, 0] - point[0])**2 + (p2[:, 1] - point[1])**2) < dm, :]
+        if c.size == 0:
+            continue
+        c = c[np.argsort(np.sqrt((c[:, 0] - point[0])**2 + (c[:, 1] - point[1])**2))]
         
         tmp_dist = Pair.distance(c[0], point)
         if tmp_dist < dm:
@@ -82,15 +84,18 @@ def cpair2(s) -> Pair:
 
 if __name__ == "__main__":
     S = [
-        [0,1], [3,2],
-        [4,3], [5,1],
-        [1,2], [2,12],
-        [6,2], [7,2],
-        [8,3], [4,5],
-        [9,0], [6,4]
+        (0, 1), (3, 2),
+        (4, 3), (5, 1),
+        (2, 1), (1, 2),
+        (6, 2), (7, 2), 
+        (8, 3), (4, 5), 
+        (9, 0), (6, 4)
     ]
 
     S = np.array(S, dtype=np.float32)
 
     pair = cpair2(S)
     print(pair)
+    # out:
+    # (6.0, 2.0) and (7.0, 2.0)
+    # dist: 1.0

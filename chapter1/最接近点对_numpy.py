@@ -1,7 +1,8 @@
 from math import sqrt
 import numpy as np
 from typing import List
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Pair(object):
     def __init__(self, p1, p2, dist):
@@ -95,3 +96,4 @@ if __name__ == "__main__":
     # out:
     # (6.0, 2.0) and (7.0, 2.0)
     # dist: 1.0
+    

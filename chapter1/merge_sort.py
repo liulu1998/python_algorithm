@@ -24,7 +24,7 @@ def merge_sort(a: List[int], left: int, right: int) -> None:
 
 def merge(a: List[int], left: int, right: int) -> None:
     """
-    左右部分分别有序的数组, 归并为一个有序数组
+    左右部分分别有序的数组, 归并为一个有序数组, 覆盖原数组(in-place)
 
     :param a
         array like, 待归并数组
@@ -63,8 +63,8 @@ def merge(a: List[int], left: int, right: int) -> None:
 
 
 if __name__ == "__main__":
-    # 11 个整型元素, 值介于0和15
-    a = np.random.randint(15, size=11)
+    # 11 个整型元素, 值介于0和80
+    a = np.random.randint(80, size=11)
     print(f"original array:\n{a}")
 
     # 原地归并排序

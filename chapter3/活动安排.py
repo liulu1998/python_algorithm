@@ -33,5 +33,10 @@ def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
 if __name__ == "__main__":
     s = [1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12]
     f = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
     count, result = greedy_selector(s, f)
+    
     print(f"count: {count}\n{result}")
+    # out:
+    # count: 4
+    # [True, False, False, True, False, False, False, True, False, False, True

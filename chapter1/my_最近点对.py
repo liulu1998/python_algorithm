@@ -14,11 +14,18 @@ class Pair(object):
     
     @staticmethod
     def distance(p1, p2):
-        # if p1.size == 0 or p2.size == 0:
-        #     return np.float("inf")
+        if p1.size == 0 or p2.size == 0:
+            return np.float("inf")
         return np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
 
+class ClosestPair(object):
+    def __init__(self, s: np.ndarray):
+        self.s = s
+        self.cpair = None
+
+    def cpair(self):
+        
 def cpair2(s) -> Pair:
     """
     二维最接近点对
@@ -45,7 +52,7 @@ def cpair2(s) -> Pair:
 
     # x 坐标中位数
     mid_x = np.median(s[:, 0])
-    
+    print(f"mid_x: {mid_x}")
     # 根据 x坐标中位数, 将 S 划分为两半
     s1 = s[s[:, 0] <= mid_x, :]
     s2 = s[s[:, 0]  > mid_x, :]
@@ -54,9 +61,12 @@ def cpair2(s) -> Pair:
     pair1 = cpair2(s1)
     pair2 = cpair2(s2)
     
+    # print(pair1, pair2, sep="\n\n")
     # 最近点对, 最短距离
     best = pair1 if pair1.dist < pair2.dist else pair2
     dm = best.dist
+
+    # print("左右两边最好的:")
 
     # 左部, 右部 距离分割线 距离小于 dm 的点 
     p1 = s1[abs(s1[:, 0] - mid_x) <= dm, :]
@@ -75,6 +85,7 @@ def cpair2(s) -> Pair:
         if tmp_dist < dm:
             best = Pair(point, c[0], tmp_dist)
             dm = tmp_dist
+
     return best
 
 

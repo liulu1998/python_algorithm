@@ -10,19 +10,26 @@ class Pair(object):
 
     @staticmethod
     def distance(a, b) -> float:
+        """
+        计算两点的欧氏距离
+        
+        :param a: array, 点1, 例如 [2, 3]
+        :param b: array, 点2, 例如 [3.3, 5]
+        :return float, 两点的欧氏距离
+        """
         return np.sqrt( (a[0]-b[0])**2 + (a[1] - b[1])**2 )
 
     def __lt__(self, other):
         return self.dist < other.dist
     
     def __str__(self):
-        return f"-----------\n({self.p1[0]}, {self.p1[1]}) and ({self.p2[0]}, {self.p2[1]})\ndist: {self.dist}"
+        return f"\n({self.p1[0]}, {self.p1[1]}) and ({self.p2[0]}, {self.p2[1]})\ndist: {self.dist}"
     
 
 
 def cpair2(x: np.ndarray) -> Pair:
 
-    # 三点
+    # 三点的情况
     if x.shape[0] == 3:
             d1 = Pair.distance(x[0], x[1])
             d2 = Pair.distance(x[1], x[2])
@@ -33,16 +40,16 @@ def cpair2(x: np.ndarray) -> Pair:
                 return Pair(x[1], x[2], d2)
             else:
                 return Pair(x[0], x[2], d3)
-    # 两点
+    # 两点的情况
     if x.shape[0] == 2:
         return Pair(x[0], x[1])
     # 一点
-    if x.shape[0] == 1:
-        return Pair(None, None, np.float("inf"))
+    # if x.shape[0] == 1:
+    #     return Pair(None, None, np.float("inf"))
 
     # 依 x坐标排序
     x = x[np.argsort(x[:, 0])]
-    # 依 y坐标排序
+    # 依 y坐标排序 (副本)
     y = x[np.argsort(x[:, 1])]
 
     # x 坐标中位数点的索引
@@ -59,6 +66,7 @@ def cpair2(x: np.ndarray) -> Pair:
 
     for i in range(z.shape[0]):
          for j in range(i+1, z.shape[0]):
+             # y 坐标距离小于 d 的才可能欧氏距离小于d
              if z[j][1] - z[i][1] < best.dist:
                  dp = Pair.distance(z[i], z[j])
                  if dp < best.dist:

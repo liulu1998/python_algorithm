@@ -88,3 +88,6 @@ if __name__ == "__main__":
 
     pair = cpair2(S)
     print(pair)
+    # out:
+    # (6.0, 2.0) and (7.0, 2.0)
+    # dist: 1.0

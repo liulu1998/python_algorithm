@@ -12,8 +12,7 @@ def binary_search(a: List[int], x: int, n: int) -> int:
         int, 待搜索的值
     :param n
         int, 搜索范围 [0..n-1]
-    :return index
-        int, 若搜索到返回元素索引; 否则返回 -1
+    :return int, 若搜索到返回元素索引; 否则返回 -1
     """
 
     left = 0

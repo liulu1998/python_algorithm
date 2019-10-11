@@ -16,7 +16,7 @@ def merge_sort(a: List[int], left: int, right: int) -> None:
     """
     if left == right:
         return
-    middle = (left + right) >> 1
+    middle: int = (left + right) >> 1
     merge_sort(a, left, middle)
     merge_sort(a, middle+1, right)
     merge(a, left, right)
@@ -37,11 +37,11 @@ def merge(a: List[int], left: int, right: int) -> None:
     # 暂存归并结果的数组
     m = np.empty((right-left+1, ), dtype=np.int32)
     # 待归并的数组 a 的中间索引
-    mid = (left + right) >> 1
+    mid: int = (left + right) >> 1
     # 左半部分、右半部分、归并结果的游标
-    index_l = left
-    index_r = mid + 1
-    index_m = 0
+    index_l: int = left
+    index_r: int = mid + 1
+    index_m: int = 0
 
     while(index_l < mid+1 and index_r < right+1):
         if a[index_l] <= a[index_r]:
@@ -50,6 +50,7 @@ def merge(a: List[int], left: int, right: int) -> None:
         else:
             m[index_m] = a[index_r]    
             index_r += 1
+        # 归并结果的游标后移
         index_m += 1
 
     # 左半部分先归并结束, 右半部分接到数组最后

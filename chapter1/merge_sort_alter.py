@@ -1,6 +1,11 @@
 import numpy as np
 from typing import List
+"""
+非递归的归并排序 
 
+--- 未完成 ---
+
+"""
 
 def merge_sort(a: List[int]) -> None:
     b = np.empty((len(a), ), dtype=np.int32)

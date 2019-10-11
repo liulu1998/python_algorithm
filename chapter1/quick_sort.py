@@ -33,7 +33,7 @@ def quick_sort(a: List[int], p: int, r: int) -> None:
     :return None, 覆盖原数组
     """
     if p < r:
-        q = partition(a, p, r)
+        q: int = partition(a, p, r)
         quick_sort(a, p, q-1)
         quick_sort(a, q+1, r)
 

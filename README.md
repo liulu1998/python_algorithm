@@ -1,7 +1,8 @@
 # 算法设计与分析实验 (python 实现)
 1. **第一章 分治与递归**
     - [二分搜索](./chapter1/binary_search.py)
-    - [合并排序](./chapter1/merge_sort.py)
+    - [归并排序(递归)](./chapter1/merge_sort.py)
+    - [归并排序(非递归)](./chapter1/merge_sort_noRecursion.py)
     - [快速排序](./chapter1/quick_sort.py)
     - [最接近点对](./chapter1/最接近点对.py)
 2. **第二章 动态规划**

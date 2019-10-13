@@ -15,7 +15,7 @@ def merge_sort(a: List[int]) -> None:
         low = 0
         # 相邻子数组, 两两归并
         while(low < len(a)):
-            merge(a, low, low+i-1, min(low + 2*i -1, len(a) - 1))
+            merge(a, left=low, mid=low+i-1, right=min(low+2*i-1, len(a)-1))
             low += 2*i
         # 子数组长度加倍
         i = i << 1
@@ -30,7 +30,7 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
     :param left
         int, 归并范围的起始索引
     :param mid
-        int, 相邻子数组的分界
+        int, 两个相邻子数组的分界
     :param right
         int, 归并范围的结束索引
     :return None
@@ -61,10 +61,12 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
     #     m[index_m: len(m)] = a[index_l: mid+1]
 
     m[index_m: len(m)] = a[index_r: right+1] if (index_l == mid + 1) else a[index_l: mid+1]
+    # 覆盖a
     a[left: right+1] = m
 
 
 if __name__ == "__main__":
+    # 值介于0~80, 
     a = np.random.randint(80, size=11)
     print(f"original array:\n{a}")
 

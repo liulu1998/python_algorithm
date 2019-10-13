@@ -60,6 +60,7 @@ def merge(a: List[int], left: int, right: int) -> None:
     #     m[index_m: len(m)] = a[index_l: mid+1]
 
     m[index_m: len(m)] = a[index_r: right+1] if (index_l == mid + 1) else a[index_l: mid+1]
+    # 覆盖a
     a[left: right+1] = m
 
 

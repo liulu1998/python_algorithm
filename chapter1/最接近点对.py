@@ -1,12 +1,19 @@
 import numpy as np
 from typing import List
+import matplotlib.pyplot as plt
 
 
+# 平面点对
 class Pair(object):
     def __init__(self, p1, p2, dist=None):
+        """
+        :param p1, 点1 例如 [1, 2]
+        :param p2, 点2 例如 [3, 4.5]
+        :param dist, float, 两点距离 不传入则自动计算
+        """
         self.p1 = p1
         self.p2 = p2
-        self.dist = dist if dist is not None else self.distance(p1, p2)
+        self.dist = dist if dist else self.distance(p1, p2)
 
     @staticmethod
     def distance(a, b) -> float:
@@ -28,6 +35,13 @@ class Pair(object):
 
 
 def cpair2(x: np.ndarray) -> Pair:
+    """
+    二维最近点对
+
+    :param x
+        2D array, 平面中的点, 表示为二维数组
+    :return Pair 
+    """
 
     # 三点的情况
     if x.shape[0] == 3:
@@ -43,13 +57,13 @@ def cpair2(x: np.ndarray) -> Pair:
     # 两点的情况
     if x.shape[0] == 2:
         return Pair(x[0], x[1])
-    # 一点
+    # 仅有一点
     # if x.shape[0] == 1:
     #     return Pair(None, None, np.float("inf"))
 
     # 依 x坐标排序
     x = x[np.argsort(x[:, 0])]
-    # 依 y坐标排序 (副本)
+    # 依 y坐标排序 (x的副本)
     y = x[np.argsort(x[:, 1])]
 
     # x 坐标中位数点的索引
@@ -86,8 +100,17 @@ if __name__ == "__main__":
 
     S = np.array(S, dtype=np.float32)
 
-    pair = cpair2(S)
-    print(pair)
+    # c = np.random.randint(S.shape[0])
+
+    plt.scatter(S[:, 0], S[:, 1])
+    plt.title("Points")
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    # plt.legend()
+    plt.savefig("points.png")
+
+    # pair = cpair2(S)
+    # print(pair)
     # out:
     # (6.0, 2.0) and (7.0, 2.0)
     # dist: 1.0

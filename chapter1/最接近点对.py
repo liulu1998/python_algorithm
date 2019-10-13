@@ -1,6 +1,6 @@
 import numpy as np
 from typing import List
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 # 平面点对
@@ -100,17 +100,16 @@ if __name__ == "__main__":
 
     S = np.array(S, dtype=np.float32)
 
-    # c = np.random.randint(S.shape[0])
-
-    plt.scatter(S[:, 0], S[:, 1])
-    plt.title("Points")
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    # plt.legend()
-    plt.savefig("points.png")
-
-    # pair = cpair2(S)
-    # print(pair)
+    pair = cpair2(S)
+    print(pair)
     # out:
     # (6.0, 2.0) and (7.0, 2.0)
     # dist: 1.0
+
+
+    # ==== 绘制散点图 ====
+    # plt.scatter(S[:, 0], S[:, 1])
+    # plt.title("Points")
+    # plt.xlabel("X")
+    # plt.ylabel("Y")
+    # plt.savefig("points.png")

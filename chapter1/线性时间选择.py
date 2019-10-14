@@ -15,14 +15,16 @@ def select(a: list, left: int, right: int, k: int) -> int or float:
     if left == right:
         return a[left]
     # 划分位置
-    i = partition(a, left, right)
-    # 左部的元素数
-    j = i - left + 1
-    # 要找的元素在左部
-    if k <= j:
-        return select(a, left, i, k)
-    else:
-        return select(a, i+1, right, k-j)
+    p = partition(a, left, right)
+    # 划分元素左部的元素数 (比划分元素小的元素数)
+    num = p - left + 1
+
+    # if k == num+1:
+    #     return a[p]
+    if k <= num:          # 要找的元素在左部
+        return select(a, left, p, k)
+    else:               # 要找的元素在右部
+        return select(a, p+1, right, k-num)
 
 
 def partition(a: list, p: int, r: int) -> int:
@@ -50,19 +52,20 @@ def partition(a: list, p: int, r: int) -> int:
         
         if low < high:
             a[high] = a[low]
-            high -= 1
-            
+            high -= 1            
+    
     a[high] = x
     return high
 
 
 if __name__ == "__main__":
     # 元素介于 0~80, 11个元素的整型数组
-    a = np.random.randint(80, size=11)
+    a = list(set(np.random.randint(low=1, high=80, size=13)))
 
     # 找到第 6 小的元素
     position = 6
 
-    print(f"array:\n{a}\n\nsorted a:\n{sorted(a)}")
+    value = select(a, 0, len(a)-1, position)
+    print(f"array:\n{a}\n\nsorted a:\n{sorted(a)}\n")
 
-    print(select(a, 0, len(a)-1, position))
+    print(f"k:{position}\n{value}")

@@ -26,7 +26,7 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     for col in range(1, n):
         for row in range(0, n-col):
             # 沿着斜线自左上向右下计算
-            # 当前l列数  
+            # 当前列数  
             cur_col = row + col
             
             m[row][cur_col] = m[row+1][cur_col] + (p[row] * p[row+1] * p[cur_col+1])

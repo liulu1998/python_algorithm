@@ -4,6 +4,7 @@
     - [归并排序(递归)](./chapter1/merge_sort.py)
     - [归并排序(非递归)](./chapter1/merge_sort_noRecursion.py)
     - [快速排序](./chapter1/quick_sort.py)
+    - [线性时间选择](./chapter1/线性时间选择.py)
     - [最接近点对](./chapter1/最接近点对.py)
 2. **第二章 动态规划**
     - [矩阵连乘](./chapter2/矩阵连乘.py)

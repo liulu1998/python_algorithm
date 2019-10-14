@@ -9,14 +9,13 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     :param p
         array like, 矩阵对应维数的数组
     :returns m
-        ndarray 子问题最优值的矩阵
+        ndarray 子问题最优值的矩阵, 二维数组
     :returns s
-        ndarray 子问题最优值对应的划分位置k 的矩阵
+        ndarray 子问题最优值对应的划分位置k 的矩阵, 二维数组
     """
     # 矩阵数
     n = len(p) - 1  
     # 暂存最优值    
-    # m = np.zeros((n, n), dtype=np.int32)
     m = np.empty((n, n), dtype=np.int32)
     for i in range(0, n):
         m[i][i] = 0
@@ -24,14 +23,13 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     # 最优值的划分位置
     s = np.empty((n, n), dtype=np.int8)
 
-    # col from 2 to (n-1)
     for col in range(1, n):
         for row in range(0, n-col):
             # 沿着斜线自左上向右下计算
-            # 当前行数  
+            # 当前l列数  
             cur_col = row + col
             
-            m[row][cur_col] = m[row+1][cur_col] + p[row]*p[row+1]*p[cur_col+1]
+            m[row][cur_col] = m[row+1][cur_col] + (p[row] * p[row+1] * p[cur_col+1])
             s[row][cur_col] = row
 
             # 计算划分最优位置 k

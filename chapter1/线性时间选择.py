@@ -19,9 +19,9 @@ def select(a: list, left: int, right: int, k: int) -> int or float:
     # 划分元素左部的元素数 (比划分元素小的元素数)
     num = p - left + 1
 
-    # if k == num+1:
-    #     return a[p]
-    if k <= num:          # 要找的元素在左部
+    if k == num:
+        return a[p]
+    elif k < num:          # 要找的元素在左部
         return select(a, left, p, k)
     else:               # 要找的元素在右部
         return select(a, p+1, right, k-num)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     a = list(set(np.random.randint(low=1, high=80, size=13)))
 
     # 找到第 6 小的元素
-    position = 6
+    position = 7
 
     value = select(a, 0, len(a)-1, position)
     print(f"array:\n{a}\n\nsorted a:\n{sorted(a)}\n")

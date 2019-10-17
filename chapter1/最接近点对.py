@@ -33,7 +33,6 @@ class Pair(object):
         return f"\n({self.p1[0]}, {self.p1[1]}) and ({self.p2[0]}, {self.p2[1]})\ndist: {self.dist}"
     
 
-
 def cpair2(x: np.ndarray) -> Pair:
     """
     二维最近点对

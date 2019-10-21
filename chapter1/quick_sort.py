@@ -70,14 +70,14 @@ def partition(a: List[int], p: int, r: int) -> int:
 
 
 if __name__ == "__main__":
-    a = np.random.randint(50, size=11)
-    # b = list(a)
+    # a = np.random.randint(50, size=11)
 
+    a = [ int(i) for i in input("输入待排序数组, 整型元素, 空格分隔, 回车结束\n").split()]
     # 原始数组
-    print(a)
+    print(f"original array:\n{a}")
 
     quick_sort(a, 0, len(a)-1)
-    print(a)
+    print(f"after quick-sort:\n{a}")
 
     # 返回 b 的副本
     # b = quick_sort_pythonic(b)

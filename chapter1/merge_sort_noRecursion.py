@@ -67,7 +67,8 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
 
 if __name__ == "__main__":
     # 值介于0~80, 
-    a = np.random.randint(80, size=11)
+    # a = np.random.randint(80, size=11)
+    a = [ int(i) for i in input("输入待排序数组, 元素为整型, 空格分隔, 回车结束\n").split()]
     print(f"original array:\n{a}")
 
     merge_sort(a)

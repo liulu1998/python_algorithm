@@ -60,13 +60,14 @@ def partition(a: list, p: int, r: int) -> int:
 
 if __name__ == "__main__":
     # 元素介于 0~80, 11个元素的整型数组
-    a = np.array([1, 90, 45, 3, 2, 56, 8, 70, 48])
-
+    # a = np.array([1, 90, 45, 3, 2, 56, 8, 70, 48])
+    a = [float(i) for i in input("输入浮点型或整型数组, 元素以空格间隔, 回车结束\n").split()]
+    position = int(input("输入查找第几小的元素, 整型\n"))
     print(f"array:\n{a}")
     # 找到第 6 小的元素
-    position = 5 
+    # position = 5 
 
     value = select(a, 0, len(a)-1, position)
-    print(f"\n\nsorted a:\n{sorted(a)}\n")
+    print(f"\nsorted a:\n{sorted(a)}\n")
 
-    print(f"k:{position}\n{value}")
+    print(f"k:{position}\nvalue:{value}")

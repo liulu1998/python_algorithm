@@ -1,6 +1,5 @@
 from queue import PriorityQueue
 from typing import List
-import matplotlib.pyplot as plt
 
 
 class Node(object):
@@ -16,18 +15,20 @@ class Node(object):
         self.left = left
         self.right = right
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         """小于方法
         """
         return self.weight < other.weight
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         """小于等于方法
         """
         return self.weight <= other.weight
 
-    def __str__(self):
-        return f"{self.weight} {self.char}" 
+    def __str__(self) -> str:
+        """转为字符串方法
+        """
+        return f"[{self.weight:.3f} {self.char}]" 
 
 
 def huffman(chars: List[str], freqs: List[float]) -> Node:
@@ -36,21 +37,26 @@ def huffman(chars: List[str], freqs: List[float]) -> Node:
     :param freqs: List[float], 字符对应的频率数组
     :return Node, 构造好的哈夫曼树
     """
+    if len(chars) != len(freqs):
+        raise ValueError("权重数组与字符数组不等长!")
+    # 优先队列, 由小顶堆实现
     pq = PriorityQueue()
-    for (f, c) in zip(freqs, chars):
+    # 初始化叶子节点, 加入优先队列
+    for f, c in zip(freqs, chars):
         pq.put(Node(weight=f, char=c, left=None, right=None))
     
     while len(pq.queue) > 1:
-        left: Node = pq.get()
-        right: Node = pq.get()
-        father = Node(left.weight+right.weight, None, left, right)
-        pq.put(father)
+        left = pq.get()
+        right = pq.get()
+        # 构造父节点, 权值为子节点权值之和
+        parent = Node(left.weight+right.weight, None, left, right)
+        pq.put(parent)
 
     return pq.queue[0]
+
 
 if __name__ == "__main__":
     chars = ["a", "b", "c", "d"]
     freqs = [0.5, 0.2, 0.2, 0.1]
 
     tree = huffman(chars, freqs)
-

@@ -2,7 +2,7 @@ from queue import PriorityQueue
 from typing import List
 
 
-class Node(object):
+class Node:
     def __init__(self, weight: float, char: str, left, right):
         """构造器
         :param weight: float, 节点权重（频率）

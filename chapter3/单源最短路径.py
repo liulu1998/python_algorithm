@@ -12,6 +12,7 @@ def dijkstra(v: int, graph: ndarray) -> (ndarray, ndarray):
     :return dist: array, 源点到各点的最短距离
     :return prev: array, 最短路径
     """
+    # 图中节点数
     num_node = graph.shape[0]
     # 记录节点是否在 S 集合中, 初始S 只有源点
     s = np.zeros((num_node, ), dtype=np.bool)
@@ -43,7 +44,9 @@ def dijkstra(v: int, graph: ndarray) -> (ndarray, ndarray):
                     prev[j] = u
     return dist, prev
 
+
 if __name__ == "__main__":
+    # 有向连通图G
     graph = array([
         [0, 10, inf, 30, 100],
         [inf, 0, 50, inf, inf],
@@ -54,5 +57,4 @@ if __name__ == "__main__":
 
     dist, prev = dijkstra(0, graph)
 
-    print(dist) 
-    print(prev)
+    print(f"dist: {dist}\nprev: {prev}") 

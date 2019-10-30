@@ -52,6 +52,9 @@ class Graph:
         # 记录是否在 S中
         s = np.zeros((n, ), dtype=np.bool)
         s[0] = True
+        # 最小生成树
+        subgraph = []
+
         for i in range(n-1):
             min_dist = inf
             j = 0
@@ -61,11 +64,13 @@ class Graph:
                     j = k
             s[j] = True
             # closest[i] = j
-            print(f"{j}, {closest[j]}")
+            subgraph.append(Edge(j, closest[j], self.graph[j][closest[j]]))
+
             for k in range(1, n):
                 if (self.graph[j][k] < low_cost[k]) and (not s[k]):
                     low_cost[k] = self.graph[j][k]
                     closest[k] = j
+        return subgraph
 
     def kruskal(self) -> None:
         """
@@ -80,7 +85,6 @@ class Graph:
         
         # 记录连通分支, 点i 所属的连通分支为 group[i]
         # 初始每个分支由单个节点构成
-        # TODO 记录连通分支的方式有误
         group = [i for i in range(self.num_node)]
         # 记录最小生成树中的边
         subgraph = []
@@ -90,10 +94,8 @@ class Graph:
             i, j = edge.u, edge.v
             # 若不在同一个连通分支
             if group[i] != group[j]:
-                # TODO 合并连通分支的方式有误
-                for n in group:
-                    if n == group[j]:
-                        n = group[i]
+                # 合并连通分支
+                group = list(map(lambda x: group[i] if x==group[j] else x, group))
                 subgraph.append(edge)
         return subgraph
 
@@ -110,8 +112,12 @@ if __name__ == "__main__":
     ], dtype=np.float32)
 
     graph = Graph(weights, num_node=None, num_edge=10)
-    # graph.prim() 
-
+    tree = graph.prim() 
+    for e in tree:
+        print(e)
+    print("--------")
     sub = graph.kruskal()
+    for s in sub:
+        print(s)
     # for s in sub:
     #     print(sub)

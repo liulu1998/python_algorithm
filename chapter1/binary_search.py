@@ -1,5 +1,9 @@
-import numpy as np
+# @Author : LIU Lu
+# @File : binary_search.py
+# @contact: liulu_heu@qq.com
+
 from typing import List
+# import numpy as np
 
 
 def binary_search(a: List[int], x: int, n: int) -> int:
@@ -30,7 +34,7 @@ def binary_search(a: List[int], x: int, n: int) -> int:
 
 if __name__ == "__main__":
  
-    a = [ float(i) for i in input("输入有序数组, 元素以空格间隔, 输入以回车结束\n").split() ]
+    a = [float(i) for i in input("输入有序数组, 元素以空格间隔, 输入以回车结束\n").split()]
     x = float(input("输入查找的元素\n"))
 
     print(f"result: {binary_search(a, x, len(a))}")

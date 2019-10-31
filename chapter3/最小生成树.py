@@ -1,4 +1,5 @@
 from copy import deepcopy
+from typing import List
 from queue import PriorityQueue
 from numpy import array, ndarray, inf
 import numpy as np
@@ -16,7 +17,7 @@ class Edge:
         self.v = v
         self.weight = weight
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         """小于方法
         """
         return self.weight < other.weight
@@ -34,12 +35,12 @@ class Graph:
         :param 
         """
         self.graph = graph
-        self.num_node = graph.shape[0] if num_node == None else num_node
+        self.num_node = graph.shape[0] if num_node is None else num_node
         if not num_edge:
             raise ValueError("边数为给出")
         self.num_edge = num_edge
 
-    def prim(self) -> None:
+    def prim(self) -> List[Edge]:
         """
         Prim 算法, 选点法
         :param graph: 2D array, 邻接矩阵表示的无向连通图
@@ -72,7 +73,7 @@ class Graph:
                     closest[k] = j
         return subgraph
 
-    def kruskal(self) -> None:
+    def kruskal(self) -> List[Edge]:
         """
         Kruskal 算法, 选边法
         """
@@ -89,13 +90,13 @@ class Graph:
         # 记录最小生成树中的边
         subgraph = []
 
-        while not edges.empty():
+        while not edges.empty() and len(set(group)) > 1:
             edge = edges.get()
             i, j = edge.u, edge.v
             # 若不在同一个连通分支
             if group[i] != group[j]:
                 # 合并连通分支
-                group = list(map(lambda x: group[i] if x==group[j] else x, group))
+                group = list(map(lambda x: group[i] if x == group[j] else x, group))
                 subgraph.append(edge)
         return subgraph
 

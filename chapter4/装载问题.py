@@ -52,5 +52,6 @@ if __name__ == "__main__":
     bestx = [False] * n
     # 当前解向量
     x = [False] * n
+    
     backtrack(0)
     print(bestx)

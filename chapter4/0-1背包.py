@@ -4,7 +4,7 @@ from collections import namedtuple
 
 
 # 物品
-Good = namedtuple('Good', ["w", "p", "avg"])
+Good = namedtuple('Good', ["id", "w", "p", "avg"])
 
 
 class Knapsack:
@@ -19,7 +19,7 @@ class Knapsack:
         if len(w) != len(p):
             raise ValueError("价值数组应与重量数组等长")
         self.c = c
-        self.goods = [Good._make([i, j, j/i]) for i, j in zip(w, p)]
+        self.goods = [Good._make([pr, i, j, j/i]) for pr, (i, j) in enumerate(zip(w, p))]
         # TODO 还原未排序的物品序号, 输出解向量
         self.goods.sort(key=lambda x: x.avg)
         # 物品总数
@@ -48,7 +48,7 @@ class Knapsack:
         # 搜索子树
         if self.cw + self.goods[i].w < self.c:
             # 满足可行性约束, 进入左子树
-            self.x[i] = True
+            self.x[self.goods[i].id] = True
             self.cw += self.goods[i].w
             self.cp += self.goods[i].p
             self.backtrack(i+1)
@@ -56,7 +56,7 @@ class Knapsack:
             self.cp -= self.goods[i].p
         
         if self.bound(i+1) > self.bestp:
-            self.x[i] = False
+            self.x[self.goods[i].id] = False
             # 满足限界函数, 进入右子树
             self.backtrack(i+1)
 
@@ -71,7 +71,7 @@ class Knapsack:
         cleft = self.c - self.cw
         # 上界
         bound = self.cp
-
+        # 循环结束时的循环变量索引
         final = None
 
         for index, good in enumerate(self.goods[i: self.n]):
@@ -95,3 +95,6 @@ if __name__ == "__main__":
     backpack = Knapsack(c=7, w=w, p=p)
     backpack.backtrack(0)
     print(f"{backpack.bestp}\n{backpack.bestx}")
+    # out:
+    # 20.0
+    # [True, False, True, True]

@@ -1,5 +1,13 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 凸多边形最优三角剖分.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 import numpy as np
 from typing import Callable
+
 
 def min_weight_triangulation(weight: np.ndarray, w: Callable[[int, int, int], int]) -> (np.ndarray, np.ndarray):
     """

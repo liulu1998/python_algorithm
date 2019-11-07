@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 0-1背包_回溯法.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from typing import List
 from copy import deepcopy
 from collections import namedtuple

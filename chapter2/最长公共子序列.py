@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 最长公共子序列.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 import numpy as np
 from typing import List
 

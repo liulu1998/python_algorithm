@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 单源最短路径.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from copy import deepcopy
 import numpy as np
 from numpy import ndarray, array, inf

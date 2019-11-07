@@ -1,6 +1,12 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 最接近点对.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 import numpy as np
 from typing import List
-# import matplotlib.pyplot as plt
 
 
 # 平面点对

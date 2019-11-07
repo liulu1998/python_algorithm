@@ -1,4 +1,10 @@
-import numpy as np
+# -*- encoding: utf-8 -*-
+"""
+@File    : quick_sort.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from typing import List
 
 

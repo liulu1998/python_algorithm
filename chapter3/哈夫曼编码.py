@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 哈夫曼编码.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from queue import PriorityQueue
 from typing import List
 

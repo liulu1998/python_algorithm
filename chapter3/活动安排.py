@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 活动安排.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from typing import List
 
 

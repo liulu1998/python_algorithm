@@ -1,7 +1,10 @@
-# @Author : LIU Lu
-# @File : 装载问题.py
-# @Date : 2019.10.31
-
+# -*- encoding: utf-8 -*-
+"""
+@File    : 装载问题_回溯法.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from typing import List
 from copy import deepcopy
 

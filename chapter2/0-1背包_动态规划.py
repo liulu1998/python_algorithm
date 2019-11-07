@@ -1,5 +1,11 @@
+# -*- encoding: utf-8 -*-
+"""
+@File    : 0-1背包_动态规划.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 import numpy as np
-# from numba import jit, njit
 from typing import List
 
 

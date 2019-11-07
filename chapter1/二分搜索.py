@@ -1,12 +1,14 @@
-# @Author : LIU Lu
-# @File : binary_search.py
-# @contact: liulu_heu@qq.com
-
+# -*- encoding: utf-8 -*-
+"""
+@File    : binary_search.py
+@Author  : Liu Lu
+@Email   : liulu_heu@qq.com
+@Software: PyCharm
+"""
 from typing import List
-# import numpy as np
 
 
-def binary_search(a: List[int], x: int, n: int) -> int:
+def binary_search(a: List[float], x: int, n: int) -> int:
     """
     二分搜索
 
@@ -21,7 +23,7 @@ def binary_search(a: List[int], x: int, n: int) -> int:
 
     left = 0
     right = n-1
-    while(left <= right):
+    while left <= right:
         middle = (left + right) >> 1
         if a[middle] == x:
             return middle

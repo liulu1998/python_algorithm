@@ -58,9 +58,9 @@ if __name__ == "__main__":
     c = 50
     cw = 0.0
     bestw = 0.0
-
     r = sum(w)
     bestx = [False] * n
     x = [False] * n
+    
     backtrack(0)
     print(bestx)

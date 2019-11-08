@@ -28,7 +28,7 @@ class Knapsack:
         self.c = c
         self.goods = [Good._make([pr, i, j, j/i]) for pr, (i, j) in enumerate(zip(w, p))]
         # id用来还原未排序的物品序号, 输出解向量
-        self.goods.sort(key=lambda x: x.avg)
+        self.goods.sort(key=lambda x: x.avg, reverse=True)
         # 物品总数
         self.n = len(self.goods)
         # 背包当前重量
@@ -66,7 +66,6 @@ class Knapsack:
             self.x[self.goods[i].id] = False
             # 满足限界函数, 进入右子树
             self.backtrack(i+1)
-
 
     def bound(self, i: int) -> float:
         """

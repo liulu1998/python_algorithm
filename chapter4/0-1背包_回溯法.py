@@ -27,7 +27,7 @@ class Knapsack:
             raise ValueError("价值数组应与重量数组等长")
         self.c = c
         self.goods = [Good._make([pr, i, j, j/i]) for pr, (i, j) in enumerate(zip(w, p))]
-        # TODO 还原未排序的物品序号, 输出解向量
+        # id用来还原未排序的物品序号, 输出解向量
         self.goods.sort(key=lambda x: x.avg)
         # 物品总数
         self.n = len(self.goods)

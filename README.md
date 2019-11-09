@@ -1,19 +1,19 @@
 # 算法设计与分析实验 (python 实现)
 1. **第一章 分治与递归**
-    - [二分搜索](./chapter1/binary_search.py)
-    - [归并排序(递归)](./chapter1/merge_sort.py)
-    - [归并排序(非递归)](./chapter1/merge_sort_noRecursion.py)
-    - [快速排序](./chapter1/quick_sort.py)
+    - [二分搜索](./chapter1/二分搜索.py)
+    - [归并排序(递归)](./chapter1/合并排序.py)
+    - [归并排序(非递归)](./chapter1/merge_ort_noRecursion.py)
+    - [快速排序](./chapter1/快速排序.py)
     - [线性时间选择](./chapter1/线性时间选择.py)
     - [最接近点对](./chapter1/最接近点对.py)
 2. **第二章 动态规划**
     - [矩阵连乘](./chapter2/矩阵连乘.py)
     - [最长公共子序列](./chapter2/最长公共子序列.py)
     - [凸多边形最优三角剖分](./chapter2/凸多边形最优三角剖分.py)
-    - 0-1 背包
+    - [0-1 背包](./chapter2/0-1背包_动态规划.py)
 3. **第三章 贪心算法**
     - [活动安排](./chapter3/活动安排.py)
-    - [哈夫曼编码](./chapter3/huffman.py)
+    - [哈夫曼编码](./chapter3/哈夫曼编码.py)
     - [单源最短路径](./chapter3/单源最短路径.py)
     - [最小生成树](./chapter3/最小生成树.py)
 4. **第四章 回溯法**

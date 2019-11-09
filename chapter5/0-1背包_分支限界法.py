@@ -79,7 +79,7 @@ class BBKnapsack:
         # 当前背包中价值
         self.cp = 0.0
         # 最优解
-        self.best_x = [False] * self.n
+        self.best_x = [0] * self.n
         # 优先队列
         self.queue = PriorityQueue(maxsize=2**(self.n + 1))
 
@@ -153,7 +153,7 @@ class BBKnapsack:
 
         # 构造最优解
         for j in range(self.n - 1, -1, -1):
-            self.best_x[self.goods[j].id] = True if enode.left else False
+            self.best_x[self.goods[j].id] = 1 if enode.left else 0
             enode = enode.parent
 
         return self.cp, self.best_x
@@ -166,3 +166,6 @@ if __name__ == '__main__':
     best_profit, best_x = backpack.bb_knapsack()
 
     print(f"{best_profit}\n{best_x}")
+    # out
+    # 20.0
+    # [0, 1, 1, 1]

@@ -38,8 +38,8 @@ class Knapsack:
         # 背包当前最优价值
         self.bestp = 0.0
 
-        self.bestx = [False] * self.n
-        self.x = [False] * self.n
+        self.bestx = [0] * self.n
+        self.x = [0] * self.n
     
     def backtrack(self, i: int):
         """
@@ -55,7 +55,7 @@ class Knapsack:
         # 搜索子树
         if self.cw + self.goods[i].w < self.c:
             # 满足可行性约束, 进入左子树
-            self.x[self.goods[i].id] = True
+            self.x[self.goods[i].id] = 1
             self.cw += self.goods[i].w
             self.cp += self.goods[i].p
             self.backtrack(i+1)
@@ -63,7 +63,7 @@ class Knapsack:
             self.cp -= self.goods[i].p
         
         if self.bound(i+1) > self.bestp:
-            self.x[self.goods[i].id] = False
+            self.x[self.goods[i].id] = 0
             # 满足限界函数, 进入右子树
             self.backtrack(i+1)
 
@@ -103,4 +103,4 @@ if __name__ == "__main__":
     print(f"{backpack.bestp}\n{backpack.bestx}")
     # out:
     # 20.0
-    # [True, False, True, True]
+    # [1, 0, 1, 1]

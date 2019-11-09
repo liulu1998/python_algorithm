@@ -19,7 +19,7 @@ class BBNode:
         """ BBNode 构造方法, BBNode 为状态空间树的结点
 
         :param parent: BBNode, 该结点的父节点
-        :param left: bool, 左儿子标志
+        :param left: bool, 是否 为父节点的左孩子
         """
         self.parent = parent
         self.left = left

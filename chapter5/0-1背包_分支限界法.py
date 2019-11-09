@@ -111,11 +111,12 @@ class BBKnapsack:
             bound += self.goods[final].profit * cleft / self.goods[final].weight
         return bound
 
-    def bb_knapsack(self):
+    def bb_knapsack(self) -> (float, List[bool]):
         """ 分支限界法求解 0-1背包问题
 
         :return:
         """
+        # 扩展结点
         enode = None
         i = 0
         best_profit = 0.0
@@ -132,28 +133,36 @@ class BBKnapsack:
                 if pt > best_profit:
                     best_profit = pt
                 # TODO enode当前为None,
-                self.queue.put(QueueNode(node=enode, upper=upper, lower=lower, weight=wt, profit=pt, layer=i+1))
+                left_node: BBNode = BBNode(parent=enode, left=True)
+                self.queue.put(QueueNode(node=left_node, upper=upper, lower=lower, weight=wt, profit=pt, layer=i+1))
 
             upper = self.bound(i+1, is_continuous=True)
             if upper >= best_profit:
                 # 右子树可能有最优解, 加入优先队列
                 # TODO 加入队列的元素
-                self.queue.put(QueueNode())
+                right_node: BBNode = BBNode(parent=enode, left=False)
+                self.queue.put(QueueNode(node=right_node, upper=upper, lower=lower, weight=self.cw, profit=self.cp, layer=i+1))
 
-            new_node = self.queue.get()
+            new_node: QueueNode = self.queue.get()
             # 当前扩展结点
+            enode: BBNode = new_node.node
+            self.cw = new_node.weight
+            self.cp = new_node.profit
+            upper = new_node.upper
+            i = new_node.layer
 
-            # enode = new_node.node
-            # self.cw = new_node.weight
-            # self.cp = new_node.profit
-            # upper = new_node.upper
-            # i = new_node.layer
+        # 构造最优解
+        for j in range(self.n - 1, -1, -1):
+            self.best_x[self.goods[j].id] = True if enode.left else False
+            enode = enode.parent
 
-        # TODO 构造最优解
-        pass
+        return self.cp, self.best_x
 
 
 if __name__ == '__main__':
-    w = [3, 5, 2, 1]
-    p = [9, 10, 7, 4]
+    w = [5, 3, 1, 2]
+    p = [10, 9, 4, 7]
     backpack = BBKnapsack(c=7, weights=w, profits=p)
+    best_profit, best_x = backpack.bb_knapsack()
+
+    print(f"{best_profit}\n{best_x}")

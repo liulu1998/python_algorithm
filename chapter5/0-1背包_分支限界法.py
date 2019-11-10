@@ -152,8 +152,8 @@ class BBKnapsack:
             i = new_node.layer
 
         # 构造最优解
-        for j in range(self.n - 1, -1, -1):
-            self.best_x[self.goods[j].id] = 1 if enode.left else 0
+        for j in range(self.n-1, -1, -1):
+            self.best_x[self.goods[j-1].id] = 1 if enode.left else 0
             enode = enode.parent
 
         return self.cp, self.best_x

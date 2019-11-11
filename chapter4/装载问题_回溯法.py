@@ -25,7 +25,7 @@ def backtrack(i: int):
     r -= w[i]
     # 可行性约束
     if cw + w[i] <= c:
-        x[i] = True
+        x[i] = 1
         cw += w[i]
         backtrack(i+1)
 
@@ -33,7 +33,7 @@ def backtrack(i: int):
         cw -= w[i]
     # 限界函数
     if cw + r > bestw:
-        x[i] = False
+        x[i] = 0
         backtrack(i+1)
     r += w[i]
         
@@ -52,9 +52,9 @@ if __name__ == "__main__":
     # 未考察的载重量
     r = sum(w)
     # 最优解向量
-    bestx = [False] * n
+    bestx = [0] * n
     # 当前解向量
-    x = [False] * n
+    x = [0] * n
     
     backtrack(0)
     print(bestx)

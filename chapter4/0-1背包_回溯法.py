@@ -96,11 +96,18 @@ class Knapsack:
 
 
 if __name__ == "__main__":
+
+    # w = [2, 3, 4, 5]
+    # p = [3, 4, 5, 7]
+    # c = 9
     w = [3, 5, 2, 1]
     p = [9, 10, 7, 4]
-    backpack = Knapsack(c=7, w=w, p=p)
+    c = 7
+
+    backpack = Knapsack(c=c, w=w, p=p)
     backpack.backtrack(0)
     print(f"{backpack.bestp}\n{backpack.bestx}")
+
     # out:
     # 20.0
     # [1, 0, 1, 1]

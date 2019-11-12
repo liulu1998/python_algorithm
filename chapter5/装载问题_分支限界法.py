@@ -63,19 +63,17 @@ class MaxLoading:
         for j in range(self.n-2, -1, -1):
             r[j] = r[j+1] + self.weights[j+1]
 
-
         i = 0
         while i < self.n:
             # 若加入当前货物后的载重量
             temp_w = ew + self.weights[i]
-            # 未考察的货物总重
-            # r -= self.weights[i]
 
             if temp_w <= self.c1:
                 # 左孩子满足约束条件
                 self.bestw = temp_w
                 left_node = BBNode(parent=e, is_left=True)
                 self.queue.put(QueueNode(node=left_node, uweight=temp_w+r[i], layer=i+1))
+                # TODO self.c1 变化
 
             # if ew + r[i] > self.bestw: 
             # 右孩子为可行解
@@ -95,8 +93,13 @@ class MaxLoading:
 
 
 if __name__ == "__main__":
-    w = [20, 10, 25, 15, 8]
-    load = MaxLoading(c1=50, weights=w)
-    print(load.max_loading())
+    # w = [20, 10, 25, 15, 8]
+    # c = 50
+    c = float(input("输入船1的最大载重量(浮点型), 回车结束\n"))
+    w = [float(i) for i in input("依次输入货物货物重量(浮点型), 空格分隔, 回车结束\n").split()]
+    load = MaxLoading(c1=c, weights=w)
+
+    result = load.max_loading()
+    print(f"result:\n{result}")
     # out
     # [0, 1, 1, 1, 0]

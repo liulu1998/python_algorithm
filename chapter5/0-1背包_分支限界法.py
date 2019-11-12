@@ -139,7 +139,6 @@ class BBKnapsack:
             upper = self.bound(i+1, is_continuous=True)
             if upper >= best_profit:
                 # 右子树可能有最优解, 加入优先队列
-                # TODO 加入队列的元素
                 right_node: BBNode = BBNode(parent=enode, left=False)
                 self.queue.put(QueueNode(node=right_node, upper=upper, lower=lower, weight=self.cw, profit=self.cp, layer=i+1))
 
@@ -153,19 +152,32 @@ class BBKnapsack:
 
         # 构造最优解
         for j in range(self.n-1, -1, -1):
-            self.best_x[self.goods[j-1].id] = 1 if enode.left else 0
+            # TODO 注释中的代码有误, 原因?
+            # self.best_x[self.goods[j-1].id] = 1 if enode.left else 0
+            self.best_x[self.goods[j].id] = 1 if enode.left else 0
             enode = enode.parent
 
         return self.cp, self.best_x
 
 
 if __name__ == '__main__':
-    w = [5, 3, 1, 2]
-    p = [10, 9, 4, 7]
-    backpack = BBKnapsack(c=7, weights=w, profits=p)
+    # c = float(input("输入背包容量(浮点型), 回车结束\n"))
+    # w = [float(i) for i in input("依次输入物品重量, 空格分隔, 回车结束\n").split()]
+    # p = [float(i) for i in input("依次输入物品价值, 空格分隔, 回车结束\n").split()]
+
+    w = [2, 3, 4, 5]
+    p = [3, 4, 5, 7]
+    c = 9
+
+    backpack = BBKnapsack(c=c, weights=w, profits=p)
     best_profit, best_x = backpack.bb_knapsack()
 
     print(f"{best_profit}\n{best_x}")
+
+    # w = [5, 3, 1, 2]
+    # p = [10, 9, 4, 7]
+    # c = 7   
+
     # out
     # 20.0
     # [0, 1, 1, 1]

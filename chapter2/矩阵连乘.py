@@ -58,7 +58,9 @@ def traceback(s: np.ndarray, i: int, j: int) -> None:
 
 
 if __name__ == "__main__":
-    p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
+    p = [int(i) for i in input("依次输入矩阵维数(整型), 空格分隔, 回车结束\n").split()]
+    p = np.array(p, dtype=np.int32)
+    # p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
     
     m, s = matrix_chain(p)
 

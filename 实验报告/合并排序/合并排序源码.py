@@ -74,9 +74,12 @@ def merge(a: List[int], left: int, right: int) -> None:
 if __name__ == "__main__":
     # 11 个整型元素, 值介于0和80
     # a = np.random.randint(80, size=11)
-    a = [ int(i) for i in input("输入待排序数组, 整型元素, 空格分隔, 回车结束\n").split()]
-    print(f"original array:\n{a}")
+    try:
+        a = [ int(i) for i in input("输入待排序数组, 整型元素, 空格分隔, 回车结束\n").split()]
+        print(f"original array:\n{a}")
 
-    # 原地归并排序
-    merge_sort(a, 0, len(a)-1)
-    print(f"after merge-sort:\n{a}")
+        # 原地归并排序
+        merge_sort(a, 0, len(a)-1)
+        print(f"after merge-sort:\n{a}")
+    except ValueError:
+        print("输入数据不合法")

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 """
 @File    : binary_search.py
+@Version : 1.0
 @Author  : Liu Lu
 @Email   : liulu_heu@qq.com
 @Software: PyCharm

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 """
 @File    : merge_sort.py
+@Version : 1.0
 @Author  : Liu Lu
 @Email   : liulu_heu@qq.com
 @Software: PyCharm

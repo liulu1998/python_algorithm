@@ -7,6 +7,7 @@
 @Software: PyCharm
 """
 from typing import List
+from collections import namedtuple
 
 
 def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
@@ -37,13 +38,33 @@ def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
         #     a[i] = False
     return count, result
 
+class Act:
+    def __init__(self, s: int, f: int):
+        if f <= s:
+            raise ValueError("开始时间应小于结束时间")
+        self.s = s
+        self.f = f
+    
+    def __lt__(self, other):
+        return self.f < other.f
+
 
 if __name__ == "__main__":
-    s = [1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12]
-    f = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    # s = [1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12]
+    # f = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    s = [int(i) for i in input("依次输入活动开始时间(整型), 空格分隔, 回车结束\n").split()]
+    f = [int(i) for i in input("依次输入活动开始时间(整型), 空格分隔, 回车结束\n").split()]
+    
+    try:
+        acts = [Act(ss, ff) for ss, ff in zip(s, f)]
+        acts.sort()
+    except Exception as e:
+        print(e)
+        exit()
 
-    print(f"活动开始时间: {s}")
-    print(f"活动结束时间: {f}")
+    s = [act.s for act in acts]
+    f = [act.f for act in acts]
+
 
     count, result = greedy_selector(s, f)
     

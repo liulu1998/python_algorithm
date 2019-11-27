@@ -48,7 +48,15 @@ def min_weight_triangulation(weight: np.ndarray, w: Callable[[int, int, int], in
                     t[row][cur_col] = tmp_t
     return t, s
 
+
 def traceback(s: np.ndarray, i: int, j: int) -> None:
+    """
+    凸多边形最优三角剖分-动态规划法, 构造最优解
+    :param s: 由 min_triangulation 方法得到的记录最优值信息的数组
+    :param i: Ai*Ai+1*...*Aj 的起始索引
+    :param j: Ai*Ai+1*...*Aj 的结束索引
+    :return: None, 在控制台输出划分步骤
+    """
     if i == j:
         return
     traceback(s, i, s[i][j])
@@ -57,17 +65,25 @@ def traceback(s: np.ndarray, i: int, j: int) -> None:
 
 
 def w(weight: np.ndarray, a: int, b: int, c:int) -> int:
+    """
+    三角形的权函数
+    :param weight: 邻接矩阵
+    :param a: 三角形顶点 A
+    :param b: 三角形顶点 B
+    :param c:  三角形顶点 C
+    :return: int, 该三角形对应的权值
+    """
     return weight[a][b] + weight[b][c] + weight[a][c]
 
 
 if __name__ == "__main__":
     weight = [
-        [0,2,2,3,1,4],
-		[2,0,1,5,2,3],
-		[2,1,0,2,1,4],
-		[3,5,2,0,6,2],
-		[1,2,1,6,0,1],
-	    [4,3,4,2,1,0]
+        [0, 2, 2, 3, 1, 4],
+        [2, 0, 1, 5, 2, 3],
+        [2, 1, 0, 2, 1, 4],
+        [3, 5, 2, 0, 6, 2],
+        [1, 2, 1, 6, 0, 1],
+        [4, 3, 4, 2, 1, 0]
     ]
     weight = np.array(weight, dtype=np.int32)
 

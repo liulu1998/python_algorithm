@@ -84,12 +84,12 @@ def cpair2(x: np.ndarray) -> Pair:
     z = y[abs(y[:, 0] - x[mid][0]) < best.dist]
 
     for i in range(z.shape[0]):
-         for j in range(i+1, z.shape[0]):
-             # y 坐标距离小于 d 的才可能欧氏距离小于d
-             if z[j][1] - z[i][1] < best.dist:
-                 dp = Pair.distance(z[i], z[j])
-                 if dp < best.dist:
-                     best = Pair(z[i], z[j], dp)
+        for j in range(i+1, z.shape[0]):
+            # y 坐标距离小于 d 的才可能欧氏距离小于d
+            if z[j][1] - z[i][1] < best.dist:
+                dp = Pair.distance(z[i], z[j])
+                if dp < best.dist:
+                    best = Pair(z[i], z[j], dp)
     return best
 
 
@@ -111,8 +111,8 @@ if __name__ == "__main__":
     # (6.0, 2.0) and (7.0, 2.0)
     # dist: 1.0
 
-
     # ==== 绘制散点图 ====
+    # import matplotlib.pyplot as plt
     # plt.scatter(S[:, 0], S[:, 1])
     # plt.title("Points")
     # plt.xlabel("X")

@@ -42,24 +42,13 @@ def traceback(m: np.ndarray, w: List[int], c: int, x: List[int]) -> None:
 
 if __name__ == "__main__":
     
-    # 物品价值
-    # v = np.array([8, 3, 2, 11, 6])
-    # 物品重量
-    # w = np.array([4, 2, 2, 5, 7])
-    # 背包容量
-    # c = np.int32(10)
-    
-    # w = [3, 5, 2, 1]
-    # v = [9, 10, 7, 4]
-    # c = 7
+    v = np.array([3, 4, 5, 7])
+    w = np.array([2, 3, 4, 5])
+    c = np.int32(9)
 
-    # v = np.array([3, 4, 5, 7])
-    # w = np.array([2, 3, 4, 5])
-    # c = np.int32(9)
-
-    c = int(input("输入背包容量(整型)\n"))
-    w = [int(i) for i in input("依次输入物品重量(整型), 空格分隔, 回车结束\n").split()]
-    v = [int(i) for i in input("依次输入物品价值(整型), 与重量一一对应, 空格分隔, 回车结束\n").split()]
+    # c = int(input("输入背包容量(整型)\n"))
+    # w = [int(i) for i in input("依次输入物品重量(整型), 空格分隔, 回车结束\n").split()]
+    # v = [int(i) for i in input("依次输入物品价值(整型), 与重量一一对应, 空格分隔, 回车结束\n").split()]
 
     m = np.zeros((len(v), c+1), dtype=np.int32)
     knapsack(v, w, c, m)

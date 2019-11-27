@@ -7,7 +7,8 @@
 """
 import numpy as np
 from typing import List
-
+import time
+import matplotlib.pyplot as plt
 
 def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     """
@@ -58,13 +59,15 @@ def traceback(s: np.ndarray, i: int, j: int) -> None:
 
 
 if __name__ == "__main__":
-    p = [int(i) for i in input("依次输入矩阵维数(整型), 空格分隔, 回车结束\n").split()]
-    p = np.array(p, dtype=np.int32)
-    # p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
-    
-    m, s = matrix_chain(p)
+    # p = [int(i) for i in input("依次输入矩阵维数(整型), 空格分隔, 回车结束\n").split()]
+    # p = np.array(p, dtype=np.int32)
 
+    p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
+    # 自底向上地计算最优值
+    m, s = matrix_chain(p)
+    # 构造最优解
     traceback(s, 0, len(p)-2)
+
     # out:
     # Multiply A[2: 2] and A[3: 3]
     # Multiply A[1: 1] and A[2: 3]

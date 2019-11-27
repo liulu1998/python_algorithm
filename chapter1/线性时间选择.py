@@ -5,7 +5,7 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-import numpy as np
+import array
 from typing import List
 
 
@@ -16,7 +16,7 @@ def select(a: list, left: int, right: int, k: int) -> int or float:
     :param a: array like, 无序数组 
     :param left: int, 查找范围起始索引
     :param right: int, 查找范围结束索引
-    :parma k: int, 第k小
+    :param k: int, 第k小
     :return int or float , 第k小的元素
     """
     if left == right:
@@ -67,12 +67,14 @@ def partition(a: list, p: int, r: int) -> int:
 
 if __name__ == "__main__":
     # 元素介于 0~80, 11个元素的整型数组
-    # a = np.array([1, 90, 45, 3, 2, 56, 8, 70, 48])
-    a = [float(i) for i in input("输入浮点型或整型数组, 元素以空格间隔, 回车结束\n").split()]
-    position = int(input("输入查找第几小的元素, 整型\n"))
-    print(f"array:\n{a}")
+    a = array.array('i', [1, 90, 45, 3, 2, 56, 8, 70, 48])
+
+    # a = [float(i) for i in input("输入浮点型或整型数组, 元素以空格间隔, 回车结束\n").split()]
+    # position = int(input("输入查找第几小的元素, 整型\n"))
+    # print(f"array:\n{a}")
+
     # 找到第 6 小的元素
-    # position = 5 
+    position = 5
 
     value = select(a, 0, len(a)-1, position)
     print(f"\nsorted a:\n{sorted(a)}\n")

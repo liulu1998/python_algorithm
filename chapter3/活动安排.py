@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 """
 @File    : 活动安排.py
+@Version : 1.0
 @Author  : Liu Lu
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
@@ -40,6 +41,9 @@ def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
 if __name__ == "__main__":
     s = [1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12]
     f = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+    print(f"活动开始时间: {s}")
+    print(f"活动结束时间: {f}")
 
     count, result = greedy_selector(s, f)
     

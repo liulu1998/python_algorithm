@@ -1,5 +1,7 @@
 .vscode/
 .idea/
+*.zip
+*.png
 chapter1/tempCodeRunnerFile.py
 chapter2/tempCodeRunnerFile.py
 chapter3/tempCodeRunnerFile.py

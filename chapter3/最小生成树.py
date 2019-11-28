@@ -5,8 +5,8 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-from copy import deepcopy
 from typing import List
+from copy import deepcopy
 from queue import PriorityQueue
 from numpy import array, ndarray, inf
 import numpy as np
@@ -34,18 +34,21 @@ class Edge:
 
 
 class Graph:
-    def __init__(self, graph: ndarray, num_node=None, num_edge=None):
+    def __init__(self, graph: ndarray):
         """
         Graph类构造器
         :param graph: 2D array, 邻接矩阵表示的无向连通图
-        :param num_node: int, 图中节点数
-        :param 
         """
         self.graph = graph
-        self.num_node = graph.shape[0] if num_node is None else num_node
-        if not num_edge:
-            raise ValueError("边数为给出")
-        self.num_edge = num_edge
+        # 结点数
+        self.num_node = graph.shape[0]
+        # 计算边数
+        count = 0
+        for i in range(self.num_node):
+            for j in range(i + 1, self.num_node):
+                if 0 < self.graph[i][j] < inf:
+                    count += 1
+        self.num_edge = count
 
     def prim(self) -> List[Edge]:
         """
@@ -119,13 +122,15 @@ if __name__ == "__main__":
         [inf, inf, 4, 2, 6, 0]
     ], dtype=np.float32)
 
-    graph = Graph(weights, num_node=None, num_edge=10)
+    graph = Graph(weights)
+
+    # Prim 算法得出的最小生成树
     tree = graph.prim() 
     for e in tree:
         print(e)
     print("--------")
+
+    # Kruskal 算法得出的最小生成树
     sub = graph.kruskal()
     for s in sub:
         print(s)
-    # for s in sub:
-    #     print(sub)

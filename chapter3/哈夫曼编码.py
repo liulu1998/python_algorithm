@@ -5,8 +5,8 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-from queue import PriorityQueue
 from typing import List
+from queue import PriorityQueue
 
 
 class Node:
@@ -56,7 +56,7 @@ def huffman(chars: List[str], freqs: List[float]) -> Node:
         left = pq.get()
         right = pq.get()
         # 构造父节点, 权值为子节点权值之和
-        parent = Node(left.weight+right.weight, None, left, right)
+        parent = Node(left.weight+right.weight, "", left, right)
         pq.put(parent)
 
     return pq.queue[0]

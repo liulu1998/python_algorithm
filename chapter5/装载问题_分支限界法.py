@@ -93,10 +93,10 @@ class MaxLoading:
 
 
 if __name__ == "__main__":
-    # w = [20, 10, 25, 15, 8]
-    # c = 50
-    c = float(input("输入船1的最大载重量(浮点型), 回车结束\n"))
-    w = [float(i) for i in input("依次输入货物货物重量(浮点型), 空格分隔, 回车结束\n").split()]
+    w = [20, 10, 25, 15, 8]
+    c = 50
+    # c = float(input("输入船1的最大载重量(浮点型), 回车结束\n"))
+    # w = [float(i) for i in input("依次输入货物货物重量(浮点型), 空格分隔, 回车结束\n").split()]
     load = MaxLoading(c1=c, weights=w)
 
     result = load.max_loading()

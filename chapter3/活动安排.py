@@ -22,7 +22,7 @@ def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
         raise ValueError("length not equal")
 
     # 每个活动是否被安排
-    result = [ False for i in range(len(s))]
+    result = [False] * len(s)
     result[0] = True
     # 安排的活动数
     count = 1
@@ -33,13 +33,13 @@ def greedy_selector(s: List[int], f: List[int]) -> (int, List[bool]):
             result[i] = True
             j = i
             count += 1
-        # else:
-        #     a[i] = False
     return count, result
 
 
 if __name__ == "__main__":
+    # 开始时间
     s = [1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12]
+    # 结束时间
     f = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
     print(f"活动开始时间: {s}")

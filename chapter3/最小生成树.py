@@ -87,27 +87,50 @@ class Graph:
         """
         Kruskal 算法, 选边法
         """
+        def findFather(father: List[int], x: int) -> int:
+            """ 并查集操作, 返回 x 所在的根结点的下标, 同时压缩路径
+
+            :param father, father 数组
+            :param x, 欲查询的结点下标
+            """
+            if x == father[x]:
+                return x
+            a = x
+            while a != father[a]:
+                a = father[a]
+            # a 此时为集合根结点
+            # 开始压缩路径
+            while x != father[x]:
+                temp = father[x]
+                father[x] = a
+                x = temp
+            return a
+
         # 所有边的优先队列, 由小顶堆实现
         edges = PriorityQueue()
         for i in range(self.num_node):
             for j in range(i+1, self.num_node):
                 if 0 < self.graph[i][j] < inf:
                     edges.put(Edge(i, j, self.graph[i][j]))
-        
-        # 记录连通分支, 点i 所属的连通分支为 group[i]
-        # 初始每个分支由单个节点构成
-        group = [i for i in range(self.num_node)]
+        # 并查集
+        father = [i for i in range(self.num_node)]
         # 记录最小生成树中的边
         subgraph = []
 
-        while not edges.empty() and len(set(group)) > 1:
+        while True:
             edge = edges.get()
             i, j = edge.u, edge.v
+            # 分别所属的连通分支
+            fa = findFather(father, i)
+            fb = findFather(father, j)
             # 若不在同一个连通分支
-            if group[i] != group[j]:
+            if fa != fb:
                 # 合并连通分支
-                group = list(map(lambda x: group[i] if x == group[j] else x, group))
+                father[fa] = fb
                 subgraph.append(edge)
+                # 树: 边数 = 结点数 - 1
+                if len(subgraph) == self.num_node - 1:
+                    break
         return subgraph
 
     

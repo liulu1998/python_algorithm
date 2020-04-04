@@ -5,11 +5,11 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-import numpy as np
-from typing import List
 import random
 import time
 import string
+from typing import List
+import numpy as np
 
 
 def lcs_length(x1: str, y1: str) -> (int, np.ndarray):

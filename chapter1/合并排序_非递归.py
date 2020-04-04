@@ -1,5 +1,5 @@
-import numpy as np
 from typing import List
+import numpy as np
 
 
 def merge_sort(a: List[int]) -> None:

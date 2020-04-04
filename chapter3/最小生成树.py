@@ -8,8 +8,8 @@
 from typing import List
 from copy import deepcopy
 from queue import PriorityQueue
-from numpy import array, ndarray, inf
 import numpy as np
+from numpy import array, ndarray, inf
 
 
 class Edge:
@@ -25,8 +25,7 @@ class Edge:
         self.weight = weight
 
     def __lt__(self, other) -> bool:
-        """小于方法
-        """
+        """小于方法"""
         return self.weight < other.weight
     
     def __str__(self) -> str:
@@ -84,27 +83,17 @@ class Graph:
         return subgraph
 
     def kruskal(self) -> List[Edge]:
-        """
-        Kruskal 算法, 选边法
+        """ Kruskal 算法, 选边法
         """
         def findFather(father: List[int], x: int) -> int:
             """ 并查集操作, 返回 x 所在的根结点的下标, 同时压缩路径
-
             :param father, father 数组
             :param x, 欲查询的结点下标
             """
             if x == father[x]:
                 return x
-            a = x
-            while a != father[a]:
-                a = father[a]
-            # a 此时为集合根结点
-            # 开始压缩路径
-            while x != father[x]:
-                temp = father[x]
-                father[x] = a
-                x = temp
-            return a
+            father[x] = findFather(father, father[x])
+            return father[x]
 
         # 所有边的优先队列, 由小顶堆实现
         edges = PriorityQueue()
@@ -112,12 +101,12 @@ class Graph:
             for j in range(i+1, self.num_node):
                 if 0 < self.graph[i][j] < inf:
                     edges.put(Edge(i, j, self.graph[i][j]))
-        # 并查集
+        # 初始化并查集
         father = [i for i in range(self.num_node)]
         # 记录最小生成树中的边
         subgraph = []
 
-        while True:
+        while not edges.empty() and len(subgraph) <= self.num_node - 1:
             edge = edges.get()
             i, j = edge.u, edge.v
             # 分别所属的连通分支
@@ -128,9 +117,6 @@ class Graph:
                 # 合并连通分支
                 father[fa] = fb
                 subgraph.append(edge)
-                # 树: 边数 = 结点数 - 1
-                if len(subgraph) == self.num_node - 1:
-                    break
         return subgraph
 
     

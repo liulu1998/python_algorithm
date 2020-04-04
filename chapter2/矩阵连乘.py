@@ -5,10 +5,11 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-import numpy as np
-from typing import List
 import time
-import matplotlib.pyplot as plt
+from typing import List
+import numpy as np
+# import matplotlib.pyplot as plt
+
 
 def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     """

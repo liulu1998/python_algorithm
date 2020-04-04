@@ -5,8 +5,8 @@
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
 """
-import numpy as np
 from typing import List
+import numpy as np
 
 
 # 平面点对

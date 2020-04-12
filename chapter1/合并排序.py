@@ -11,14 +11,10 @@ import numpy as np
 
 def merge_sort(a: List[int], left: int, right: int) -> None:
     """
-    归并排序
-
-    :param a
-        array like, 待排序数组
-    :param left
-        int, 起始索引
-    :param right
-        int, 结束索引
+    归并排序, 原地排序
+    :param a, array like, 待排序数组
+    :param left, int, 起始索引
+    :param right, int, 结束索引
     :return None
     """
     if left == right:
@@ -33,12 +29,9 @@ def merge(a: List[int], left: int, right: int) -> None:
     """
     左右部分分别有序的数组, 归并为一个有序数组, 覆盖原数组(in-place)
 
-    :param a
-        array like, 待归并数组
-    :param left
-        int, 归并范围的起始索引
-    :param right
-        int, 归并范围的结束索引
+    :param a, array like, 待归并数组
+    :param left, int, 归并范围的起始索引
+    :param right, int, 归并范围的结束索引
     :return None
     """
     # 暂存归并结果的数组
@@ -50,7 +43,7 @@ def merge(a: List[int], left: int, right: int) -> None:
     index_r: int = mid + 1
     index_m: int = 0
 
-    while(index_l < mid+1 and index_r < right+1):
+    while(index_l < mid + 1 and index_r < right + 1):
         if a[index_l] <= a[index_r]:
             m[index_m] = a[index_l]
             index_l += 1
@@ -66,15 +59,14 @@ def merge(a: List[int], left: int, right: int) -> None:
     # else:
     #     m[index_m: len(m)] = a[index_l: mid+1]
 
-    m[index_m: len(m)] = a[index_r: right+1] if (index_l == mid + 1) else a[index_l: mid+1]
+    # 与以上注释中代码等价
+    m[index_m: len(m)] = a[index_r: right + 1] if (index_l == mid + 1) else a[index_l: mid + 1]
     # 覆盖a
-    a[left: right+1] = m
+    a[left: right + 1] = m
 
 
 if __name__ == "__main__":
-    # 11 个整型元素, 值介于0和80
     a = np.random.randint(80, size=11)
-    # a = [ int(i) for i in input("输入待排序数组, 整型元素, 空格分隔, 回车结束\n").split()]
     print(f"original array:\n{a}")
 
     # 原地归并排序

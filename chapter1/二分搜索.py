@@ -12,7 +12,6 @@ import numpy as np
 def binary_search(a: List[float], x: int, n: int) -> int:
     """
     二分搜索
-
     :param a, array like, 有序数组
     :param x, int, 待搜索的值
     :param n, int, 搜索范围 [0..n-1]
@@ -33,12 +32,6 @@ def binary_search(a: List[float], x: int, n: int) -> int:
 
 
 if __name__ == "__main__":
- 
-    # a = [float(i) for i in input("输入有序数组, 元素以空格间隔, 输入以回车结束\n").split()]
-    # x = float(input("输入查找的元素\n"))
-
-    # print(f"result: {binary_search(a, x, len(a))}")
-
     # a: from 1 to 10
     a = np.arange(1, 11, dtype=np.int8)
 

@@ -16,7 +16,6 @@ def quick_sort_pythonic(array: List[int]) -> List[int]:
     :param array: array like, 待排序数组
     :return List[int], 有序数组
     """
-
     if len(array) <= 1:
         return array
 
@@ -77,17 +76,6 @@ def partition(a: List[int], p: int, r: int) -> int:
 
 
 if __name__ == "__main__":
-    # try:
-    #     a = [ int(i) for i in input("输入待排序数组, 整型元素, 空格分隔, 回车结束\n").split()]
-    #
-    #     # 原始数组
-    #     print(f"original array:\n{a}")
-    #
-    #     quick_sort(a, 0, len(a)-1)
-    #     print(f"after quick-sort:\n{a}")
-    # except ValueError:
-    #     print("输入非法")
-
     a = np.random.randint(50, size=11)
     print(f"original array:\n{a}")
     # 原地快速排序

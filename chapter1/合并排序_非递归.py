@@ -25,14 +25,10 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
     """
     左右部分分别有序的数组, 归并为一个有序数组, in-place
 
-    :param a
-        array like, 待归并数组
-    :param left
-        int, 归并范围的起始索引
-    :param mid
-        int, 两个相邻子数组的分界
-    :param right
-        int, 归并范围的结束索引
+    :param a, array like, 待归并数组
+    :param left, int, 归并范围的起始索引
+    :param mid, int, 两个相邻子数组的分界
+    :param right, int, 归并范围的结束索引
     :return None
     """
     # 暂存归并结果的数组
@@ -44,7 +40,7 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
     index_r: int = mid + 1
     index_m: int = 0
 
-    while(index_l < mid+1 and index_r < right+1):
+    while(index_l < mid + 1 and index_r < right + 1):
         if a[index_l] <= a[index_r]:
             m[index_m] = a[index_l]
             index_l += 1
@@ -68,7 +64,6 @@ def merge(a: List[int], left: int, mid: int, right: int) -> None:
 if __name__ == "__main__":
     # 值介于0~80, 
     a = np.random.randint(80, size=11)
-    # a = [ int(i) for i in input("输入待排序数组, 元素为整型, 空格分隔, 回车结束\n").split()]
     print(f"original array:\n{a}")
 
     merge_sort(a)

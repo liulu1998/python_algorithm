@@ -4,8 +4,14 @@
 @Author  : Liu Lu
 @Email   : liulu_heu@qq.com
 @Software: PyCharm
+
+区间 DP
+一般的方式:
+    - 枚举区间长度
+        - 枚举左端点
 """
-import time
+
+# import time
 from typing import List
 import numpy as np
 # import matplotlib.pyplot as plt
@@ -15,40 +21,34 @@ def matrix_chain(p: List[int]) -> (np.ndarray, np.ndarray):
     """
     计算M, S
 
-    :param p
-        array like, 矩阵对应维数的数组
-    :returns m
-        ndarray 子问题最优值的矩阵, 二维数组
-    :returns s
-        ndarray 子问题最优值对应的划分位置k 的矩阵, 二维数组
+    :param p, array like, 矩阵对应维数的数组
+    :returns m, ndarray 子问题最优值的矩阵, 二维数组
+    :returns s, ndarray 子问题最优值对应的划分位置k 的矩阵, 二维数组
     """
     # 矩阵数
-    n = len(p) - 1  
-    # 暂存最优值    
-    m = np.empty((n, n), dtype=np.int32)
+    n = len(p) - 1
+
+    # dp 数组
+    dp = np.empty((n, n), dtype=np.int32)
+    # 初始化 dp 数组
+    dp[:] = 1e9
     for i in range(0, n):
-        m[i][i] = 0
-    
+        dp[i][i] = 0
+
     # 最优值的划分位置
     s = np.empty((n, n), dtype=np.int8)
 
-    for col in range(1, n):
-        for row in range(0, n-col):
-            # 沿着斜线自左上向右下计算
-            # 当前列数  
-            cur_col = row + col
-            
-            m[row][cur_col] = m[row+1][cur_col] + (p[row] * p[row+1] * p[cur_col+1])
-            s[row][cur_col] = row
-
-            # 计算划分最优位置 k
-            for k in range(row+1, cur_col):
-                tmp_m = m[row][k] + m[k+1][cur_col] + p[row]*p[k+1]*p[cur_col+1]
-                # 如果出现更优的划分位置 k
-                if tmp_m < m[row][cur_col]:
-                    s[row][cur_col] = k
-                    m[row][cur_col] = tmp_m
-    return m, s
+    for length in range(2, n + 1):      # 枚举区间长度
+        for i in range(0, n-1):        # 枚举左端点
+            r = i + length - 1        # 计算右端点
+            if r > n - 1:   # 右端点越界
+                break
+            for k in range(i, r):     # 枚举划分位置
+                tmp_v = dp[i][k] + dp[k + 1][r] + p[i] * p[k + 1] * p[r + 1]
+                if tmp_v < dp[i][r]:
+                    dp[i][r] = tmp_v
+                    s[i][r] = k
+    return dp, s
 
 
 def traceback(s: np.ndarray, i: int, j: int) -> None:
@@ -60,12 +60,11 @@ def traceback(s: np.ndarray, i: int, j: int) -> None:
 
 
 if __name__ == "__main__":
-    # p = [int(i) for i in input("依次输入矩阵维数(整型), 空格分隔, 回车结束\n").split()]
-    # p = np.array(p, dtype=np.int32)
-
     p = np.array([30, 35, 15, 5, 10, 20, 25], dtype=np.int32)
     # 自底向上地计算最优值
     m, s = matrix_chain(p)
+
+    print(f"min cost: {m[0][len(p) - 2]}")
     # 构造最优解
     traceback(s, 0, len(p)-2)
 

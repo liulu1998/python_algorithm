@@ -59,19 +59,15 @@ def partition(a: List[int], p: int, r: int) -> int:
     while low < high:
         while low < high and a[high] >= x:
             high -= 1
-
-        if low < high:
-            a[low] = a[high]
-            low += 1
-        
-        while low < high and a[low] < x:
-            low += 1
-        
-        if low < high:
-            a[high] = a[low]
-            high -= 1
             
-    a[high] = x
+        a[low] = a[high]
+        
+        while low < high and a[low] <= x:
+            low += 1
+            
+        a[high] = a[low]
+    # <<< while
+    a[low] = x
     return high
 
 
